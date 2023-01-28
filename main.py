@@ -1,1 +1,4 @@
-print("Hello, World!")
+from ui import HomeUI
+
+if __name__ == "__main__":
+    app = HomeUI()
