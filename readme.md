@@ -12,7 +12,7 @@ pip install crypt
 ##### not available now
 ## Usage
 
-Install the executable from [here](https://darpankattel.com.np/). Have a great time.
+Install the executable from [here](https://darpankattel.com.np/projects/crypt/). Have a great time.
 
 ## Contributing
 
