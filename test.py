@@ -10,22 +10,28 @@ if __name__ == "__main__":
     import os
     import django
 
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'orm')))
+    sys.path.insert(0, os.path.abspath(
+        os.path.join(os.path.dirname(__file__), 'orm')))
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orm.settings')
     django.setup()
 
     # every code reside below this
 
-
     # Let this be here
     # This is where the authenticate functions are used
     from logic import CryptAuth
 
-
-    username = "darpan.kattel"
+    username = "darpan.kattel2"
     password = "Darpan+423219@"
+    first_name = "darpan"
+    last_name = "kattel"
+    confirm_password = "Darpan+423219@"
+    email = "darpankattel1@gmail.com"
 
     auth = CryptAuth()
-    user = auth.login(username, password)
+    user = auth.signup(username, first_name, last_name,
+                       email, password, confirm_password)
     print(user)
+    print(auth.is_authenticated())
+    auth.login(username, password)
     print(auth.is_authenticated())

@@ -40,4 +40,4 @@ class EncryptedFileTree(models.Model):
         return f"/{path}"
 
     def get_complete_path(self):
-        return f"{self.owner.directory}{id}-{name}"
+        return f"{self.owner.directory}{self.id}-{self.name}"
