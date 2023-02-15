@@ -1,9 +1,12 @@
+from data import EncryptedFileTree
+from django.db.models import Q
 class Vault:
     def __init__(self, user) -> None:
         self.user = user
 
     def get_initials(self):
-        return
+        initial_files = EncryptedFileTree.objects.filter( Q(parent_directory = None) & Q(owner=self.user) )
+        return initial_files
     
     def get_children(self, fileTree):
         # if it is image then send the content by decrypting too! call get_decrypted()
