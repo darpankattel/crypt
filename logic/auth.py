@@ -51,8 +51,8 @@ class CryptAuth:
         if not username:
             raise InvalidUsernameException("Username cannot be empty.")
         if not User.objects.filter(username=username).exists():
-            new_user = User.objects.create(
-                username=username, email=email, password=password)
+            new_user = User.objects.create(username=username, email=email)
+            new_user.set_password(password)
             new_user.first_name = first_name
             new_user.last_name = last_name
             new_user.save()
@@ -66,4 +66,4 @@ class CryptAuth:
         return self.user is not None and self.user.is_authenticated
 
     def get_current_user(self):
-        return self.user
+        return AppUser.objects.get(user=self.user)

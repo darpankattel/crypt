@@ -10,6 +10,7 @@ class AppUser(models.Model):
     directory = models.CharField(max_length=1000, null=True, blank=False)
     picture = models.ImageField(
         upload_to="users/", blank=True, null=True)
+    has_toured = models.BooleanField(default=False)
 
     @property
     def full_name(self):
