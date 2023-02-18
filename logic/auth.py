@@ -43,7 +43,8 @@ class CryptAuth:
             new_user.save()
             self.user = AppUser.objects.get(user=new_user)
             return self.user
-        return new_user
+        self.user = new_user
+        return self.user
 
     def signup(self, username, first_name, last_name, email, password, confirm_password):
         if not (password == confirm_password):
@@ -64,7 +65,7 @@ class CryptAuth:
         self.user = None
 
     def is_authenticated(self):
-        return self.user is not None and self.user.user.is_authenticated()
+        return self.user is not None and self.user.user.is_authenticated
 
     def get_current_user(self):
         return self.user
