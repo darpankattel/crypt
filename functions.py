@@ -12,3 +12,9 @@ def get_path_to_image(image: ImageField) -> str:
         return parent_directory_path + image.url
     except ValueError as e:
         return None
+
+def get_name_from_path(path):
+    return path.split("/")[-1]
+
+def get_encryption_key():
+    return "1234"
