@@ -20,9 +20,9 @@ if __name__ == "__main__":
     # This is where the authenticate functions are used
     from logic import CryptAuth, Vault
     from functions import get_path_to_image
-    from data import EncryptedFileTree
+
     username = "javed.ansari"
-    password = "javedbabu+aayusha"
+    password = "Gotohell@123"
     first_name = "darpan"
     last_name = "kattel"
     confirm_password = "Darpan+423219@"
@@ -33,20 +33,15 @@ if __name__ == "__main__":
     #                    email, password, confirm_password)
     # print(user)
     # print(auth.is_authenticated())
-    user = auth.login(username, password)
-    if user:
-        print(auth.is_authenticated())
-        print(auth.get_current_user().has_toured)
-        print(get_path_to_image(auth.get_current_user().picture))
-        myvault = Vault(auth.get_current_user())
-        #print(myvault.get_initials())
-        #myvault.insert_folder("D:/", None)
-        #new_folder = myvault.create_folder(folder = "DarpanBabu", fileTree = EncryptedFileTree.objects.get(id=3))
-        #print(new_folder)
-        #myvault.insert_file("D:/hello.txt", EncryptedFileTree.objects.get(id=6))
-        myvault.insert_folder("D:/New folder", EncryptedFileTree.objects.get(id=6))
-        # files = os.listdir("D:/New folder")
+    auth.login(username, password)
+    print(auth.is_authenticated())
+    print(auth.get_current_user().has_toured)
+    print(get_path_to_image(auth.get_current_user().picture))
+    
+    myVault = Vault(auth.get_current_user())
+    my_files = myVault.get_initials()
+    print(my_files)
 
-        # for file in files:
-        #     file_path = os.path.join("D:/New folder", file).replace("\\","/")
-        #     print(file_path)
+
+    
+

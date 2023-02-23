@@ -18,7 +18,7 @@ class EncryptedFileTree(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.id}. {self.name}"
 
     @property
     def is_file(self):
