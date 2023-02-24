@@ -73,9 +73,8 @@ class Vault:
     # Checked
 
     def insert_folder(self, folder, fileTree):
-        #   1) call create function and create a folder.
-
-        # creation of folder
+        #   1) call create function and create a folder.   
+        #creation of folder
         new_folder = self.create_folder(get_name_from_path(folder), fileTree)
         #   2) loop for all the files one by one using insert_file function.
         files = os.listdir(folder)
@@ -92,6 +91,5 @@ class Vault:
 
     # Checked
     def create_folder(self, folder, fileTree):
-        new_folder = EncryptedFileTree.objects.create(
-            name=folder, parent_directory=fileTree, owner=self.user)
+        new_folder = EncryptedFileTree.objects.create(name = folder, parent_directory = fileTree, owner = self.user)
         return new_folder

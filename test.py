@@ -44,9 +44,10 @@ if __name__ == "__main__":
         #new_folder = myvault.create_folder(folder = "DarpanBabu", fileTree = EncryptedFileTree.objects.get(id=3))
         #print(new_folder)
         #myvault.insert_file("D:/hello.txt", EncryptedFileTree.objects.get(id=6))
-        myvault.insert_folder("D:/New folder", EncryptedFileTree.objects.get(id=6))
+        #myvault.insert_folder("D:/New folder", EncryptedFileTree.objects.get(id=6))
         # files = os.listdir("D:/New folder")
 
         # for file in files:
         #     file_path = os.path.join("D:/New folder", file).replace("\\","/")
         #     print(file_path)
+        myvault.insert_folder("D:/Test folder", EncryptedFileTree.objects.get(id=3))
