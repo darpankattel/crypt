@@ -42,7 +42,7 @@ class Vault:
         #   1) call create function and create a folder.
         
         #creation of folder
-        new_folder = self.create_folder( get_name_from_path(folder), fileTree)
+        new_folder = self.create_folder(get_name_from_path(folder), fileTree)
         #   2) loop for all the files one by one using insert_file function.
         files = os.listdir(folder)
 
@@ -50,6 +50,9 @@ class Vault:
             file_path = os.path.join(folder, file).replace("\\","/")
             if os.path.isfile(file_path):
                 self.insert_file(file_path, new_folder)
+                print(file_path)
+            elif os.path.isdir(file_path):
+                self.insert_folder(file_path, new_folder)
                 print(file_path)
         return new_folder
 
