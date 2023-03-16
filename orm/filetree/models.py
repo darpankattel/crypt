@@ -39,5 +39,21 @@ class EncryptedFileTree(models.Model):
             path = f"{current_node.name}/{path}"
         return f"/{path}"
 
+    def get_relative_list(self):
+        data = [
+            {
+                "name": self.name,
+                "id": self.id
+            },
+        ]
+        current_node = self
+        while current_node.parent_directory is not None:
+            current_node = current_node.parent_directory
+            data.append({
+                "name": current_node.name,
+                "id": current_node.id,
+            })
+        return data[::-1]
+
     def get_complete_path(self):
         return f"{self.owner.directory}{self.id}-{self.name}"

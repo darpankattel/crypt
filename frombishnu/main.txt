@@ -1,0 +1,122 @@
+
+        # Create navbar frame
+        self.navbar = tk.Frame(self, height=20, bg="black")
+        self.navbar.pack(fill="x")
+
+        # add logo and text to navbar
+        self.logo = tk.PhotoImage(file="resources/images/main_logo.png")
+        self.logo = self.logo.subsample(5, 5)
+        self.logo_label = tk.Label(self.navbar, image=self.logo, bg="black")
+        self.logo_label.pack(side="left", padx=20)
+
+        self.text_label = tk.Label(
+            self.navbar, text="Crypt", bg="black", fg="white", font=("Arial", 16, "bold"))
+        self.text_label.pack(side="left", padx=(0, 10))
+
+        # add search bar to navbar
+        self.search_entry = tk.Entry(self.navbar, bg="white", fg="black", font=(
+            "Arial", 14), width=50, cursor="hand2")
+        self.search_entry.insert(0, "Search")
+        self.search_entry.place(relx=0.5, rely=0.5, anchor="center")
+        self.search_entry.config(insertbackground="white")
+        self.search_entry.config(highlightthickness=0)
+        self.search_entry.config(bd=0)
+
+        # add icons to navbar
+        self.icon1 = tk.PhotoImage(file="resources/images/ques.png")
+        self.icon1_label = tk.Button(
+            self.navbar, image=self.icon1, bg="black", bd=0, activebackground="black", cursor="hand2")
+        self.icon1_label.pack(side="right", padx=15, pady=5)
+
+        self.icon2 = tk.PhotoImage(file="resources/images/gear.png")
+        self.icon2_label = tk.Button(
+            self.navbar, image=self.icon2, bg="black", bd=0, activebackground="black", cursor="hand2")
+        self.icon2_label.pack(side="right", padx=15, pady=5)
+
+        self.icon3 = tk.PhotoImage(file="resources/images/vector.png")
+        self.icon3_label = tk.Button(
+            self.navbar, image=self.icon3, bg="black", bd=0, activebackground="black", cursor="hand2")
+        self.icon3_label.pack(side="right", padx=15, pady=5)
+
+        self.configure(background="white")
+
+        # create the left frame
+        self.left_frame = tk.Frame(self, bg="#C399CC")
+        self.left_frame.pack(side="left", fill="y")
+
+        self.advert_frame = tk.Frame(self.left_frame, bg="#C399CC")
+        self.advert_frame.pack(side="top", fill="x")
+
+        self.hamburgerimg = tk.PhotoImage(file="resources/images/hambur.png")
+        self.hamburgerbtn = tk.Button(self.advert_frame, image=self.hamburgerimg, bg="#C399CC",
+                                      bd=0, cursor="hand2", foreground="black", activebackground="#C399CC")
+        self.hamburgerbtn.grid(row=0, column=0, padx=12)
+
+        self.menu_txt = tk.Label(self.advert_frame, text="Menu", font=(
+            "Arial", 18, "bold"), bg="#C399CC", foreground="black")
+        self.menu_txt.grid(row=0, column=1)
+
+        self.voiceimg = tk.PhotoImage(file="resources/images/voice.png")
+        self.voicebtn = tk.Button(self.left_frame, image=self.voiceimg, bg="#C399CC",
+                                  bd=0, cursor="hand2", foreground="black", activebackground="#C399CC")
+        self.voicebtn.pack(side="top", pady=10, padx=12)
+
+        self.videoimg = tk.PhotoImage(file="resources/images/videos.png")
+        self.videobtn = tk.Button(self.left_frame, image=self.videoimg, bg="#C399CC",
+                                  bd=0, cursor="hand2", foreground="black", activebackground="#C399CC")
+        self.videobtn.pack(side="top", pady=10, padx=12)
+
+        self.pictureimg = tk.PhotoImage(file="resources/images/pictures.png")
+        self.picturebtn = tk.Button(self.left_frame, image=self.pictureimg, bg="#C399CC",
+                                    bd=0, cursor="hand2", foreground="black", activebackground="#C399CC")
+        self.picturebtn.pack(side="top", pady=10, padx=12)
+
+        self.documentimg = tk.PhotoImage(file="resources/images/document.png")
+        self.documentbtn = tk.Button(self.left_frame, image=self.documentimg, bg="#C399CC",
+                                     bd=0, cursor="hand2", foreground="black", activebackground="#C399CC")
+        self.documentbtn.pack(side="top", pady=10, padx=12)
+
+        def about_us():
+            print("its me! BIshnu")
+
+        self.label_abt = tk.Button(self.left_frame, text="About Us", font=(
+            "SUNKEN", 18), bg="#C399CC", foreground="black", activebackground="#C399CC", bd=0, cursor="hand2", command=about_us)
+        self.label_abt.pack(side="bottom", pady=(0, 10))
+
+        # pack the  right frame
+        self.right_frame = tk.Frame(self, bg="white")
+        self.right_frame.pack(side="right", fill="both", expand=True)
+
+        folder_list=["qwerty","python","tkinter"]
+        self.icon = tk.PhotoImage(file="resources/images/structure.png")
+        i=0
+        for element in folder_list:
+            self.icon_btn = tk.Button(self.right_frame,image=self.icon,bd=0,activebackground="white",bg="white",cursor="hand2")
+            self.icon_btn.grid(row=1,column=i)
+            self.name= tk.Label(self.right_frame,text=element,font=("Arial",12,"bold"),bg="white")
+            self.name.grid(row=2,column=i)
+            i=i+1
+        # list of strings to represent breadcrumb trail
+        self.breadcrumb_list = ["Home", "videos"]
+
+        # Create breadcrumb frame
+        self.breadcrumb = tk.Frame(self.right_frame, height=30, bg="white")
+        self.breadcrumb.grid(row=0, column=0, columnspan=len(
+            self.breadcrumb_list)*2, sticky="ew")
+
+        # Add each string in breadcrumb list as a Label to the breadcrumb bar
+        for i in range(len(self.breadcrumb_list)):
+            if i == len(self.breadcrumb_list) - 1:
+                label = tk.Button(self.breadcrumb, text=self.breadcrumb_list[i], font=(
+                    "Arial", 10, "bold"), bg="white", cursor="hand2", bd=0, activebackground="white")
+            else:
+                label = tk.Button(self.breadcrumb, text=self.breadcrumb_list[i], font=(
+                    "Arial", 10, "bold"), bg="white", cursor="hand2", bd=0, activebackground="white")
+            label.grid(row=0, column=i*2+1, sticky="w")
+
+            # Add separator (>) between breadcrumb labels
+            if i != len(self.breadcrumb_list) - 1:
+                separator = tk.Label(self.breadcrumb, text=">", font=(
+                    "Arial", 10, "bold"), bg="white")
+                separator.grid(row=0, column=i*2+2, sticky="e")
+

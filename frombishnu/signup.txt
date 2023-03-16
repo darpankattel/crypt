@@ -1,0 +1,52 @@
+        self.configure(bg="#C399CC") #background color
+        
+    
+        self.left_frame = tk.Frame(self, bg="#C399CC")
+        self.left_frame.pack(side="left", fill="y",padx=(0,150))
+
+        
+        self.photo2 = tk.PhotoImage(file="resources/images/main_logo.png")
+        self.label1 = tk.Label(self.left_frame, image=self.photo2, bg="#C399CC")
+        self.label1.grid(row=0,column=0)
+        
+        
+        self.text_label = tk.Label(self.left_frame, text="Crypt", font=("Arial", 20,"bold"), bg="#C399CC",fg="white")
+        self.text_label.grid(row=1,column=0)
+        
+        self.photo1 = tk.PhotoImage(file="resources/images/group.png")
+        self.label2 = tk.Label(self.left_frame, image=self.photo1, bg="#C399CC")
+        self.label2.grid(row=5,column=0,pady=(20,0))
+
+        self.right_frame = tk.Frame(self, bg="#C399CC",width=500)
+        self.right_frame.pack(fill="y")
+
+        self.title_label = tk.Label(self.right_frame, text="Create New User Identity", bg="#C399CC", fg="black", font=("sunken", 30, "bold"))
+        self.title_label.pack(pady=(20,0))
+
+        self.username_label = tk.Label(self.right_frame, text="Username:", bg="#C399CC", fg="black", font=("Arial", 20))
+        self.username_label.pack(pady=10, anchor="w")
+
+        self.username_entry = tk.Entry(self.right_frame, font=("Arial", 18), width=40)
+        self.username_entry.pack(pady=10,ipady=6)
+
+        self.password_label = tk.Label(self.right_frame, text="Password:", bg="#C399CC", fg="black", font=("Arial", 20))
+        self.password_label.pack(pady=10, anchor="w")
+
+        self.password_entry = tk.Entry(self.right_frame, show="*", font=("Arial", 18), width=40)
+        self.password_entry.pack(pady=5,ipady=6)
+
+        self.confirm_password_label = tk.Label(self.right_frame, text="Confirm Password:", bg="#C399CC", fg="black", font=("Arial", 20))
+        self.confirm_password_label.pack(pady=10, anchor="w")
+
+        self.confirm_password_entry = tk.Entry(self.right_frame, show="*", font=("Arial", 18), width=40)
+        self.confirm_password_entry.pack(pady=10,ipady=6)
+
+        self.terms_checkbox = tk.Checkbutton(self.right_frame, text="I accept the terms and conditions", bg="#C399CC", fg="black", font=("Arial", 12),activebackground="#C399CC")
+        self.terms_checkbox.pack(pady=10, anchor="w")
+
+        self.next_button_photo=tk.PhotoImage(file="resources/images/next.png")
+        self.next_button = tk.Button(self.right_frame, image=self.next_button_photo, bg="#C399CC", fg="#862d86", font=("Arial", 20), bd=0, activebackground="#C399CC", activeforeground="#862d86", cursor="hand2", width=400)
+        self.next_button.pack(pady=20)
+
+        self.login_label = tk.Button(self.right_frame, text="Already have an account? login", bg="#C399CC", fg="black", font=("Arial", 14,"underline"), bd=0,activebackground="#C399CC", activeforeground="blue", cursor="hand2")
+        self.login_label.pack(pady=10)

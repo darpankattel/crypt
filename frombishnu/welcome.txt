@@ -1,0 +1,87 @@
+self.configure(bg="#C399CC")
+                
+        self.wright_frame = tk.Frame(self, bg="#C399CC")
+        self.wright_frame.pack(side="right",fill="y")
+                
+        self.logo_frame = tk.Frame(self.wright_frame,bg="#C399CC")
+        self.logo_frame.grid(row=2, column=2, sticky="n",pady=80)
+                
+        self.original_image_main = Image.open("resources/images/main_logo.png")
+        self.resized_image_main = self.original_image_main.resize((int(self.original_image_main.width * 0.75), int(self.original_image_main.height * 0.75)))
+        self.main = ImageTk.PhotoImage(self.resized_image_main)
+        self.wel_ri_label2 = tk.Label(self.logo_frame, image=self.main, bg="#C399CC")
+        self.wel_ri_label2.image = self.main  # store a reference to the image to avoid garbage collection
+        self.wel_ri_label2.pack(side="left", padx=(0,20))
+                
+        self.wel_ri_crypt = tk.Label(self.logo_frame, text="CRYPT", font=("Arial", 20, "bold"), bg="#C399CC", fg="black")
+        self.wel_ri_crypt.pack(side="right")
+                
+        self.wel_ri_text = tk.Label(self.wright_frame,text="\"Your private data is our\nresponsibility to make\nsecure.\"",font=("Arial",20), bg="#C399CC", fg="black")
+        self.wel_ri_text.grid(row=3,column=2)
+        
+        self.man = tk.PhotoImage(file="resources/images/man.png")
+        self.wel_label1 = tk.Label(self.wright_frame, image=self.man, bg="#C399CC")
+        self.wel_label1.grid(row=2, column=3, sticky="se", pady=120, rowspan=8)
+                
+        self.original_image = Image.open("resources/images/get_started.png")
+        self.resized_image = self.original_image.resize((int(self.original_image.width * 0.75), int(self.original_image.height * 0.75)))
+        self.get_started_button_photo = ImageTk.PhotoImage(self.resized_image)
+        self.get_started_button = tk.Button(self.wright_frame, image=self.get_started_button_photo, bg="#C399CC", fg="#862d86", font=("Arial", 20), bd=0, activebackground="#C399CC", activeforeground="#862d86", cursor="hand2", width=400)
+        self.get_started_button.grid(row=4, column=2, padx=(10,0))
+                
+        self.wleft_frame = tk.Frame(self, bg="#C399CC")
+        self.wleft_frame.pack(side="left", fill="y")
+                
+        self.le_frame1 = tk.Frame(self.wleft_frame, bg="#C399CC")
+        self.le_frame1.grid(row=0, column=0, pady=40, padx=40, ipadx=40)
+                
+        self.wel_le_text1 = tk.Label(self.le_frame1, text="Are you ready to safe your", font=("Arial", 30), bg="#C399CC", fg="black")
+        self.wel_le_text1.grid(row=0, column=0, sticky="w")  
+                
+        self.wel_le_text1 = tk.Label(self.le_frame1, text="personal data's?", font=("Arial", 30), bg="#C399CC", fg="black")
+        self.wel_le_text1.grid(row=1, column=0, sticky="w")
+                
+        self.original_image_pic = Image.open("resources/images/pic.png")
+        self.resized_image_pic = self.original_image_pic.resize((int(self.original_image_pic.width * 0.75), int(self.original_image_pic.height * 0.75)))
+        self.main_pic = ImageTk.PhotoImage(self.resized_image_pic)
+        self.wel_le_label1 = tk.Label(self.le_frame1, image=self.main_pic, bg="#C399CC")
+        self.wel_le_label1.grid(row=2,column=0,sticky="w",pady=10)
+        
+        self.original_image_voi = Image.open("resources/images/voi.png")
+        self.resized_image_voi = self.original_image_voi.resize((int(self.original_image_voi.width * 0.75), int(self.original_image_voi.height * 0.75)))
+        self.main_voi = ImageTk.PhotoImage(self.resized_image_voi)
+        self.wel_le_label1 = tk.Label(self.le_frame1, image=self.main_voi, bg="#C399CC")
+        self.wel_le_label1.grid(row=3,column=0,sticky="w",pady=10)
+        
+        self.original_image_vid = Image.open("resources/images/vid.png")
+        self.resized_image_vid = self.original_image_vid.resize((int(self.original_image_vid.width * 0.75), int(self.original_image_vid.height * 0.75)))
+        self.main_vid = ImageTk.PhotoImage(self.resized_image_vid)
+        self.wel_le_label1 = tk.Label(self.le_frame1, image=self.main_vid, bg="#C399CC")
+        self.wel_le_label1.grid(row=4,column=0,sticky="w",pady=10)
+        
+        self.original_image_doc = Image.open("resources/images/doc.png")
+        self.resized_image_doc = self.original_image_doc.resize((int(self.original_image_doc.width * 0.75), int(self.original_image_doc.height * 0.75)))
+        self.main_doc = ImageTk.PhotoImage(self.resized_image_doc)
+        self.wel_le_label1 = tk.Label(self.le_frame1, image=self.main_doc, bg="#C399CC")
+        self.wel_le_label1.grid(row=5,column=0,sticky="w",pady=10)
+        
+        
+        self.le_frame2 = tk.Frame(self.wleft_frame, bg="#C399CC")
+        self.le_frame2.grid(row=3, column=0, sticky="s",pady=40,padx=40)
+        
+        self.wel_le_text3 = tk.Label(self.le_frame2,text="CRYPT", font=("Arial", 25,"bold","underline"), bg="#C399CC",fg="black")
+        self.wel_le_text3.grid(row=0,column=0,sticky="w")  
+        
+        self.wel_le_text4 = tk.Label(self.le_frame2,text="We save your data very safely and we", font=("Arial", 25), bg="#C399CC",fg="black")
+        self.wel_le_text4.grid(row=1,column=0,sticky="w")
+        
+        self.wel_le_text5 = tk.Label(self.le_frame2,text="give some extra memory for storing", font=("Arial", 25),bg="#C399CC",fg="black")
+        self.wel_le_text5.grid(row=2,column=0,sticky="w")  
+        
+        self.wel_le_text6 = tk.Label(self.le_frame2,text="your private data.", font=("Arial", 25),bg="#C399CC",fg="black")
+        self.wel_le_text6.grid(row=3,column=0,sticky="w")
+
+        self.canvas = tk.Canvas(self, width=2, height=self.winfo_height())
+        self.canvas.create_line(0, 0, 0, self.winfo_height(), fill="black")
+        self.canvas.pack(side="left", fill="y")
+        # self.canvas.pack(side="right", fill="y")

@@ -1,0 +1,65 @@
+        def about_us():
+            self.notebook = ttk.Notebook(self)
+
+            # create three tabs
+            tab1 = ttk.Frame(self.notebook)
+            tab2 = ttk.Frame(self.notebook)
+            tab3 = ttk.Frame(self.notebook)
+            tab4 = ttk.Frame(self.notebook)
+
+            # add the tabs to the notebook
+            self.notebook.add(tab1, text="Darpan Kattel")
+            self.notebook.add(tab2, text="Bishnu Datt Badu")
+            self.notebook.add(tab3, text="Bibek Sunar")
+            self.notebook.add(tab4, text="Javed Ansari")
+
+            # add some content to the tabs
+            self.darpan = tk.Label(tab1)
+            self.ppdarpan = tk.PhotoImage(file="resources/images/darpan-modified.png")
+            self.ppdarpan = self.ppdarpan.subsample(2,2)
+            self.photod = tk.Label(self.darpan, image=self.ppdarpan)
+            self.photod.pack()
+            self.text = tk.Label(self.darpan,text="Darpan kattel\n077BCT099",font=("Arial",20,"bold")).pack()
+            self.text = tk.Label(self.darpan,text="You should pass the actual tkinter widgets\n as parent widgets to the buttons.\nYou should pass the actual tkinter widgets\n as parent widgets to the buttons.",font=("Arial",18)).pack()
+            self.darpan.pack()
+            
+            self.bishnu=tk.Label(tab2)
+            self.ppbishnu = tk.PhotoImage(file="resources/images/bishnu-modified.png")
+            self.ppbishnu = self.ppbishnu.subsample(2,2)
+            self.photob = tk.Label(self.bishnu, image=self.ppbishnu)
+            self.photob.pack()
+            self.text = tk.Label(self.bishnu,text="Bishnu Datt Badu\n077BCT098",font=("Arial",20,"bold")).pack()
+            self.text = tk.Label(self.bishnu,text="You should pass the actual tkinter widgets\n as parent widgets to the buttons.\nYou should pass the actual tkinter widgets\n as parent widgets to the buttons.",font=("Arial",18)).pack()
+            self.bishnu.pack()
+            
+            self.bibek= tk.Label(tab3)
+            self.ppbibek = tk.PhotoImage(file="resources/images/userphoto.png")
+            self.photov = tk.Label(self.bibek, image=self.ppbibek)
+            self.photov.pack()
+            self.text = tk.Label(self.bibek,text="Bibek Sunar\n 077BCT097",font=("Arial",20,"bold")).pack()
+            self.text = tk.Label(self.bibek,text="You should pass the actual tkinter widgets\n as parent widgets to the buttons.\nYou should pass the actual tkinter widgets\n as parent widgets to the buttons.",font=("Arial",18)).pack()
+            self.bibek.pack()
+            
+            self.javed=tk.Label(tab4)
+            self.ppjaved = tk.PhotoImage(file="resources/images/userphoto.png")
+            self.photoj = tk.Label(self.javed, image=self.ppjaved)
+            self.photoj.pack()
+            self.text = tk.Label(self.javed,text="Javed Ansari\n077BCT",font=("Arial",20,"bold")).pack()
+            self.text = tk.Label(self.javed,text="You should pass the actual tkinter widgets\n as parent widgets to the buttons.\nYou should pass the actual tkinter widgets\n as parent widgets to the buttons.",font=("Arial",18)).pack()
+            self.javed.pack()
+            
+            def end():
+                self.notebook.destroy()
+
+            self.widgets = [self.darpan, self.bishnu, self.javed, self.bibek]
+
+            for widget in self.widgets:
+                remove_button = tk.Button(widget, text="exit", command=end,bd=0,cursor="hand2")
+                remove_button.pack()
+
+            self.notebook.pack()
+
+
+        self.label_abt = tk.Button(self.left_frame, text="About Us", font=(
+            "SUNKEN", 18), bg="#C399CC", foreground="black", activebackground="#C399CC", bd=0, cursor="hand2", command=about_us)
+        self.label_abt.pack(side="bottom", pady=(0, 10))
