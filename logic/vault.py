@@ -101,6 +101,8 @@ class Vault:
 
     # Checked
     def insert_folder(self, folder, fileTree):
+        #   1) call create function and create a folder.
+        # creation of folder
         new_folder = self.create_folder(get_name_from_path(folder), fileTree)
         files = os.listdir(folder)
 
