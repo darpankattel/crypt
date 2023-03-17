@@ -23,9 +23,9 @@ if __name__ == "__main__":
     from data import EncryptedFileTree
     username = "darpan.kattel"
     password = "Darpan+423219"
-    first_name = "darpan"
-    last_name = "kattel"
-    confirm_password = "Darpan+423219@"
+    first_name = "Darpan"
+    last_name = "Kattel"
+    confirm_password = "Darpan+423219"
     email = "darpankattel1@gmail.com"
 
     auth = CryptAuth()
@@ -40,21 +40,3 @@ if __name__ == "__main__":
         print(auth.get_current_user().has_toured)
         print(get_path_to_image(auth.get_current_user().picture))
         myvault = Vault(auth.get_current_user())
-        # print(myvault.get_initials())
-        # myvault.insert_folder("D:/", None)
-        # new_folder = myvault.create_folder(folder = "DarpanBabu", fileTree = EncryptedFileTree.objects.get(id=3))
-        # print(new_folder)
-        # myvault.insert_file("D:/hello.txt", EncryptedFileTree.objects.get(id=6))
-        # myvault.insert_folder("D:/New folder", EncryptedFileTree.objects.get(id=6))
-        # file = EncryptedFileTree.objects.create()
-        # myvault.insert_file("D:/test/1st-test.txt", None)
-
-        # myvault.get_encrypted(
-        #     EncryptedFileTree.objects.get(id=18), "D:/test/1st-test.txt")
-        myvault.export(EncryptedFileTree.objects.get(
-            id=18), "D:/Crypt/exported/")
-        # files = os.listdir("D:/New folder")
-
-        # for file in files:
-        #     file_path = os.path.join("D:/New folder", file).replace("\\","/")
-        #     print(file_path)

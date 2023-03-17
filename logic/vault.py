@@ -90,7 +90,6 @@ class Vault:
         self.temp_path = os.path.join(self.temp_dir.name, fileTree.name)
         with open(self.temp_path, "wb") as f:
             f.write(decrypted_data)
-        print(self.temp_path)
         return self.temp_path
 
     # Checked

@@ -59,16 +59,16 @@ class SignUpUI:
         self.first_name_label.grid(row=0, column=0)
 
         self.first_name_entry = tk.Entry(
-            self.top_right_frame, font=("Arial", 18), width=20)
+            self.top_right_frame, font=("Arial", 20), width=20)
         self.first_name_entry.grid(row=1, column=0)
 
         self.last_name_label = tk.Label(
             self.top_right_frame, text="Lastname:", bg="#C399CC", fg="black", font=("Arial", 15))
-        self.last_name_label.grid(row=0, column=1)
+        self.last_name_label.grid(row=0, column=1, padx=20)
 
         self.last_name_entry = tk.Entry(
-            self.top_right_frame, font=("Arial", 18), width=20)
-        self.last_name_entry.grid(row=1, column=1, padx=2)
+            self.top_right_frame, font=("Arial", 20), width=20)
+        self.last_name_entry.grid(row=1, column=1, padx=20)
 
         # middle right frame
         self.middle_right_frame = tk.Frame(self.right_frame, bg="#C399CC")
@@ -79,16 +79,16 @@ class SignUpUI:
         self.username_label.grid(row=0, column=0)
 
         self.username_entry = tk.Entry(
-            self.middle_right_frame, font=("Arial", 18), width=20)
+            self.middle_right_frame, font=("Arial", 20), width=20)
         self.username_entry.grid(row=1, column=0)
 
         self.email_label = tk.Label(
             self.middle_right_frame, text="Email:", bg="#C399CC", fg="black", font=("Arial", 15))
-        self.email_label.grid(row=0, column=1)
+        self.email_label.grid(row=0, column=1, padx=20)
 
         self.email_entry = tk.Entry(
-            self.middle_right_frame, font=("Arial", 18), width=20)
-        self.email_entry.grid(row=1, column=1, padx=2)
+            self.middle_right_frame, font=("Arial", 20), width=20)
+        self.email_entry.grid(row=1, column=1, padx=20)
 
         # last right frame
         self.last_right_frame = tk.Frame(self.right_frame, bg="#C399CC")
@@ -99,16 +99,16 @@ class SignUpUI:
         self.password_label.grid(row=0, column=0)
 
         self.password_entry = tk.Entry(
-            self.last_right_frame, show="*", font=("Arial", 18), width=20)
+            self.last_right_frame, show="*", font=("Arial", 20), width=20)
         self.password_entry.grid(row=1, column=0)
 
         self.confirm_password_label = tk.Label(
             self.last_right_frame, text="Confirm Password:", bg="#C399CC", fg="black", font=("Arial", 15))
-        self.confirm_password_label.grid(row=0, column=1)
+        self.confirm_password_label.grid(row=0, column=1, padx=20)
 
         self.confirm_password_entry = tk.Entry(
-            self.last_right_frame, show="*", font=("Arial", 18), width=20)
-        self.confirm_password_entry.grid(row=1, column=1, padx=2)
+            self.last_right_frame, show="*", font=("Arial", 20), width=20)
+        self.confirm_password_entry.grid(row=1, column=1, padx=20)
 
         self.terms_checkbox = tk.Checkbutton(self.right_frame, text="I accept the terms and conditions",
                                              bg="#C399CC", fg="black", font=("Arial", 12), activebackground="#C399CC")

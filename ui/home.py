@@ -254,13 +254,22 @@ class HomeUI(tk.Tk):
             "id": None,
         }])
 
-        self.notebook = ttk.Notebook(self.right_frame, width=700, height=700)
+        self.notebook = ttk.Notebook(self.right_frame)
 
         # create three tabs
         tab1 = ttk.Frame(self.notebook)
         tab2 = ttk.Frame(self.notebook)
         tab3 = ttk.Frame(self.notebook)
         tab4 = ttk.Frame(self.notebook)
+
+        # Create a style for the Notebook widget
+        style = ttk.Style()
+        style.theme_create("mytheme", parent="alt", settings={
+            "TNotebook": {"configure": {"background": "#C399CC"}},
+            "TNotebook.Tab": {"configure": {"padding": [10, 5]}},
+            "TCombobox": {"configure": {"padding": [5, 5, 5, 5], "foreground": "black"}},
+        })
+        style.theme_use("mytheme")
 
         # add the tabs to the notebook
         self.notebook.add(tab1, text="Darpan Kattel")
@@ -269,54 +278,54 @@ class HomeUI(tk.Tk):
         self.notebook.add(tab4, text="Javed Ansari")
 
         # add some content to the tabs
-        self.darpan = tk.Label(tab1, background="white")
+        self.darpan = tk.Label(tab1, background="#C399CC")
         self.ppdarpan = tk.PhotoImage(
             file="resources/images/darpan-kattel.png")
         self.ppdarpan = self.ppdarpan.subsample(2, 2)
         self.photod = tk.Label(
-            self.darpan, image=self.ppdarpan, background="white")
+            self.darpan, image=self.ppdarpan, background="#C399CC")
         self.photod.pack()
         self.text = tk.Label(self.darpan, text="Darpan kattel\n077BCT099", font=(
-            "Arial", 20, "bold"), background="white").pack()
+            "Arial", 20, "bold"), background="#C399CC").pack()
         self.text = tk.Button(
-            self.darpan, text="linkedin.com/in/darpankattel/", font=("Arial", 15), background="white", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
+            self.darpan, text="linkedin.com/in/darpankattel/", font=("Arial", 15), background="#C399CC", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
         self.darpan.pack()
 
-        self.bishnu = tk.Label(tab2, background="white")
+        self.bishnu = tk.Label(tab2, background="#C399CC")
         self.ppbishnu = tk.PhotoImage(
             file="resources/images/bishnu.png")
         self.ppbishnu = self.ppbishnu.subsample(2, 2)
         self.photob = tk.Label(
-            self.bishnu, image=self.ppbishnu, background="white")
+            self.bishnu, image=self.ppbishnu, background="#C399CC")
         self.photob.pack()
         self.text = tk.Label(self.bishnu, text="Bishnu Datt Badu\n077BCT098", font=(
-            "Arial", 20, "bold"), background="white").pack()
+            "Arial", 20, "bold"), background="#C399CC").pack()
         self.text = tk.Button(
-            self.bishnu, text="facebook.com/bishnudbadu.143", font=("Arial", 15), background="white", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.facebook.com/bishnudbadu.143"), bd=0).pack()
+            self.bishnu, text="facebook.com/bishnudbadu.143", font=("Arial", 15), background="#C399CC", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.facebook.com/bishnudbadu.143"), bd=0).pack()
         self.bishnu.pack()
 
-        self.bibek = tk.Label(tab3, background="white")
+        self.bibek = tk.Label(tab3, background="#C399CC")
         self.ppbibek = tk.PhotoImage(file="resources/images/bibek-sunar.png")
         self.ppbibek = self.ppbibek.subsample(2, 2)
         self.photov = tk.Label(
-            self.bibek, image=self.ppbibek, background="white")
+            self.bibek, image=self.ppbibek, background="#C399CC")
         self.photov.pack()
         self.text = tk.Label(self.bibek, text="Bibek Sunar\n 077BCT097", font=(
-            "Arial", 20, "bold"), background="white").pack()
+            "Arial", 20, "bold"), background="#C399CC").pack()
         self.text = tk.Button(
-            self.bibek, text="linkedin.com/in/darpankattel/", font=("Arial", 15), background="white", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
+            self.bibek, text="", font=("Arial", 15), background="#C399CC", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
         self.bibek.pack()
 
-        self.javed = tk.Label(tab4, background="white")
+        self.javed = tk.Label(tab4, background="#C399CC")
         self.ppjaved = tk.PhotoImage(file="resources/images/javed-ansari.png")
         self.ppjaved = self.ppjaved.subsample(2, 2)
         self.photoj = tk.Label(
-            self.javed, image=self.ppjaved, background="white")
+            self.javed, image=self.ppjaved, background="#C399CC")
         self.photoj.pack()
         self.text = tk.Label(self.javed, text="Javed Ansari\n077BCT033", font=(
-            "Arial", 20, "bold"), background="white").pack()
+            "Arial", 20, "bold"), background="#C399CC").pack()
         self.text = tk.Button(
-            self.javed, text="linkedin.com/in/darpankattel/", font=("Arial", 15), background="white", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
+            self.javed, text="", font=("Arial", 15), background="#C399CC", foreground="blue", cursor="hand2", command=lambda: self.open_link("https://www.linkedin.com/in/darpankattel/"), bd=0).pack()
         self.javed.pack()
         self.notebook.pack()
 
@@ -403,7 +412,7 @@ class HomeUI(tk.Tk):
                     messagebox.showwarning(
                         "Coudln't delete", "Couldn't delete the file/folder. Perhaps it doesn't exist.")
         else:
-            print("Unknown")
+            pass
 
     def handle_right_click(self, event, id):
         context_menu = tk.Menu(self.master, tearoff=0)

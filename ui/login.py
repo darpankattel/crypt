@@ -103,7 +103,6 @@ class LoginUI:
         self.signup_label.grid(row=6, column=1)
 
     def login_click(self):
-        print(self.username_entry.get(), self.password_entry.get())
         if self.auth.login(self.username_entry.get(), self.password_entry.get()):
             self.on_login_success()
         else:
