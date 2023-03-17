@@ -1,0 +1,161 @@
+import tkinter as tk
+from logic import CryptAuth
+from tkinter import messagebox
+from functions import clearinside
+import config
+from logic import auth
+
+
+class SignUpUI:
+    def __init__(self, master, auth: CryptAuth, on_signup_success, on_login_click):
+        self.master = master
+        self.auth = auth
+        self.on_signup_success = on_signup_success
+        self.on_login_click = on_login_click
+
+        self.master.config(bg="#C399CC")
+        self.master.geometry("1200x800")
+        self.master.minsize(800, 600)
+        self.master.iconbitmap("resources/images/icon.ico")
+        self.master.title(config.FULL_APP_NAME)
+
+        self.master.configure(bg="#C399CC")  # background color
+
+        self.main_container = tk.Frame(self.master)
+        self.main_container.pack(fill="both")
+        self.main_container.config(bg="#C399CC")
+
+        self.left_frame = tk.Frame(self.main_container, bg="#C399CC")
+        self.left_frame.pack(side="left", fill="y", padx=(0, 150))
+
+        self.photo2 = tk.PhotoImage(file="resources/images/main_logo.png")
+        self.label1 = tk.Label(
+            self.left_frame, image=self.photo2, bg="#C399CC")
+        self.label1.grid(row=0, column=0)
+
+        self.text_label = tk.Label(self.left_frame, text="Crypt", font=(
+            "Arial", 20, "bold"), bg="#C399CC", fg="white")
+        self.text_label.grid(row=1, column=0)
+
+        self.photo1 = tk.PhotoImage(file="resources/images/group.png")
+        self.label2 = tk.Label(
+            self.left_frame, image=self.photo1, bg="#C399CC")
+        self.label2.grid(row=5, column=0, pady=(20, 0))
+
+        self.right_frame = tk.Frame(
+            self.main_container, bg="#C399CC", width=500)
+        self.right_frame.pack(fill="y")
+
+        self.title_label = tk.Label(self.right_frame, text="Sign Up to Crypt",
+                                    bg="#C399CC", fg="black", font=("sunken", 30, "bold"))
+        self.title_label.pack(pady=(20, 0))
+
+        # top right frame
+        self.top_right_frame = tk.Frame(self.right_frame, bg="#C399CC")
+        self.top_right_frame.pack(pady=10)
+
+        self.first_name_label = tk.Label(
+            self.top_right_frame, text="Firstname:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.first_name_label.grid(row=0, column=0)
+
+        self.first_name_entry = tk.Entry(
+            self.top_right_frame, font=("Arial", 20), width=20)
+        self.first_name_entry.grid(row=1, column=0)
+
+        self.last_name_label = tk.Label(
+            self.top_right_frame, text="Lastname:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.last_name_label.grid(row=0, column=1,padx=20)
+
+        self.last_name_entry = tk.Entry(
+            self.top_right_frame, font=("Arial", 20), width=20)
+        self.last_name_entry.grid(row=1, column=1,padx=20)
+
+        # middle right frame
+        self.middle_right_frame = tk.Frame(self.right_frame, bg="#C399CC")
+        self.middle_right_frame.pack(pady=10)
+
+        self.username_label = tk.Label(
+            self.middle_right_frame, text="Username:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.username_label.grid(row=0, column=0)
+
+        self.username_entry = tk.Entry(
+            self.middle_right_frame, font=("Arial", 20), width=20)
+        self.username_entry.grid(row=1, column=0)
+
+        self.email_label = tk.Label(
+            self.middle_right_frame, text="Email:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.email_label.grid(row=0, column=1,padx=20)
+
+        self.email_entry = tk.Entry(
+            self.middle_right_frame, font=("Arial", 20), width=20)
+        self.email_entry.grid(row=1, column=1, padx=20)
+
+        # last right frame
+        self.last_right_frame = tk.Frame(self.right_frame, bg="#C399CC")
+        self.last_right_frame.pack(pady=10)
+
+        self.password_label = tk.Label(
+            self.last_right_frame, text="Password:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.password_label.grid(row=0, column=0)
+
+        self.password_entry = tk.Entry(
+            self.last_right_frame, show="*", font=("Arial", 20), width=20)
+        self.password_entry.grid(row=1, column=0)
+
+        self.confirm_password_label = tk.Label(
+            self.last_right_frame, text="Confirm Password:", bg="#C399CC", fg="black", font=("Arial", 15))
+        self.confirm_password_label.grid(row=0, column=1,padx=20)
+
+        self.confirm_password_entry = tk.Entry(
+            self.last_right_frame, show="*", font=("Arial", 20), width=20)
+        self.confirm_password_entry.grid(row=1, column=1, padx=20)
+
+        self.terms_checkbox = tk.Checkbutton(self.right_frame, text="I accept the terms and conditions",
+                                             bg="#C399CC", fg="black", font=("Arial", 12), activebackground="#C399CC")
+        self.terms_checkbox.pack(pady=10, anchor="w")
+
+        self.next_button_photo = tk.PhotoImage(
+            file="resources/images/next.png")
+        self.next_button = tk.Button(self.right_frame, image=self.next_button_photo, bg="#C399CC", fg="#862d86", font=(
+            "Arial", 20), bd=0, activebackground="#C399CC", activeforeground="#862d86", cursor="hand2", width=400, command=self.signup_click)
+        self.next_button.pack(pady=20)
+
+        self.login_label = tk.Button(self.right_frame, text="Already have an account? login", bg="#C399CC", fg="black", font=(
+            "Arial", 14, "underline"), bd=0, activebackground="#C399CC", activeforeground="blue", cursor="hand2", command=self.login_click)
+        self.login_label.pack(pady=10)
+
+    def signup_click(self):
+        username = self.username_entry.get()
+        password = self.password_entry.get()
+        confirm_password = self.confirm_password_entry.get()
+        first_name = self.first_name_entry.get()
+        last_name = self.last_name_entry.get()
+        email = self.email_entry.get()
+        print(username,
+              password,
+              confirm_password, first_name, last_name, email)
+        if not (username and password and first_name and last_name and email):
+            messagebox.showerror(
+                "Couldn't sign up.", "Provide all the required information.")
+        elif (password != confirm_password):
+            messagebox.showerror(
+                "Couldn't sign up.", "Passwords don't match.")
+        else:
+            try:
+                self.auth.signup(username, first_name, last_name,
+                                 email, password, confirm_password)
+                messagebox.showinfo(
+                    "Signup successfull.", "Your account has been created, kindly login again.")
+                self.main_container.destroy()
+                self.on_signup_success()
+            except auth.InvalidPasswordsException:
+                messagebox.showerror("Couldn's sign up.", "Invalid passwords.")
+            except auth.InvalidUsernameException:
+                messagebox.showerror("Couldn's sign up.", "Invalid Username.")
+            except auth.UsernameAlreadyExistsException:
+                messagebox.showerror("Couldn's sign up.",
+                                     "Username already exists.")
+
+    def login_click(self):
+        self.main_container.destroy()
+        self.on_login_click()

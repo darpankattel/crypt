@@ -23,9 +23,9 @@ if __name__ == "__main__":
 
     username = "javed.ansari"
     password = "Gotohell@123"
-    first_name = "darpan"
-    last_name = "kattel"
-    confirm_password = "Darpan+423219@"
+    first_name = "Darpan"
+    last_name = "Kattel"
+    confirm_password = "Darpan+423219"
     email = "darpankattel1@gmail.com"
 
     auth = CryptAuth()
@@ -37,11 +37,7 @@ if __name__ == "__main__":
     print(auth.is_authenticated())
     print(auth.get_current_user().has_toured)
     print(get_path_to_image(auth.get_current_user().picture))
-    
+
     myVault = Vault(auth.get_current_user())
     my_files = myVault.get_initials()
     print(my_files)
-
-
-    
-

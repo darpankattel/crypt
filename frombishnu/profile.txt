@@ -1,0 +1,42 @@
+       def show_user_info():
+            # Create a new toplevel window
+            self.top = tk.Toplevel()
+            self.top.title("User Information")
+            self.top.config(bg="#C399CC")
+            self.top.geometry("900x900")
+            # Display user information in the window
+            self.photo =tk.PhotoImage(file="resources/images/userphoto.png")
+            self.label = tk.Label(self.top,image=self.photo,bg="#C399CC")
+            self.label.grid(row=0, column=0,sticky="w")
+            
+            self.user_info_frame = tk.Frame(self.top,bg="#C399CC")
+            self.user_info_frame.grid(row=0,column=1,sticky="w")
+            
+            self.user_info_label = tk.Label(self.user_info_frame, text="Personal information",font=("Arial",30,"bold","underline"),bg="#C399CC")
+            self.user_info_label.grid(row=0, column=0,pady=10,columnspan=3)
+            
+            self.user_info_label = tk.Label(self.user_info_frame, text="Last Login: 2022/03/15",font=("Arial",15),bg="#C399CC")
+            self.user_info_label.grid(row=1, column=0,sticky="w")
+            
+            self.user_info_label = tk.Label(self.user_info_frame, text="Today:2022/03/16",font=("Arial",15),bg="#C399CC")
+            self.user_info_label.grid(row=1, column=1)
+            
+            self.user_detail = tk.Frame(self.top,bg="#C399CC")
+            self.user_detail.grid(row=1,column=1)
+            
+            self.user_info_label4 = tk.Label(self.user_detail,text="Name: Darpan Kattel",font=("Arial",18),bg="#C399CC")
+            self.user_info_label4.grid(row=0,column=0,pady=10,sticky="w")
+            self.user_info_label1 = tk.Label(self.user_detail,text="Username: darpan.kattel12",font=("Arial",18),bg="#C399CC")
+            self.user_info_label1.grid(row=1,column=0,pady=10,sticky="w")
+            self.user_info_label2 = tk.Label(self.user_detail,text="Email: 077bct099.darpan@pcampus.edu.np",font=("Arial",18),bg="#C399CC")
+            self.user_info_label2.grid(row=2,column=0,pady=10,sticky="w")
+            self.user_info_label3 = tk.Label(self.user_detail,text="Folder Directory: C:/Users/OneDrive/Documents",font=("Arial",18),bg="#C399CC")
+            self.user_info_label3.grid(row=3,column=0,pady=10,sticky="w")
+            self.user_info_label4 = tk.Label(self.user_detail,text="Email: 077bct099.darpan@pcampus.edu.np",font=("Arial",18),bg="#C399CC")
+            self.user_info_label4.grid(row=4,column=0,pady=10,sticky="w")
+            self.user_info_label5 = tk.Label(self.user_detail,text="Folder Directory: C:/Users/OneDrive/Documents",font=("Arial",18),bg="#C399CC")
+            self.user_info_label5.grid(row=5,column=0,pady=10,sticky="w")
+            self.user_info_label6 = tk.Label(self.user_detail,text="Email: 077bct099.darpan@pcampus.edu.np",font=("Arial",18),bg="#C399CC")
+            self.user_info_label6.grid(row=6,column=0,pady=10,sticky="w")
+            self.user_info_label7 = tk.Label(self.user_detail,text="Folder Directory: C:/Users/OneDrive/Documents",font=("Arial",18),bg="#C399CC")
+            self.user_info_label7.grid(row=7,column=0,pady=10,sticky="w")

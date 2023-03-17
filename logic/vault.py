@@ -27,69 +27,126 @@ class Vault:
         # TODO send thumbnail for image file
         return initial_files
 
-    def get_encrypted(self, fileTree: EncryptedFileTree, from_path: str) -> bool:
-        # a complete filepath to create. Like: D:/folder/1-file.txt
-        save_to = fileTree.get_complete_path()
-        return Encrypt.encrypt(from_path, save_to, fileTree.key)
+    def get_voice(self):
+        initial_files = EncryptedFileTree.objects.filter(
+            Q(name__endswith='.mp3') | Q(name__endswith='.wav'), Q(name__endswith='.ogg') & Q(owner=self.user))
+        return initial_files
 
-    def get_decrypted(fileTree: EncryptedFileTree) -> str:
+    def get_video(self):
+        initial_files = EncryptedFileTree.objects.filter(Q(name__endswith='.mp4') | Q(
+            name__endswith='.avi') | Q(name__endswith='.mkv') | Q(name__endswith='.mov') & Q(owner=self.user))
+        return initial_files
+
+    def get_picture(self):
+        initial_files = EncryptedFileTree.objects.filter(
+            Q(name__endswith='.jpg') | Q(name__endswith='.jpeg') | Q(name__endswith='.png') & Q(owner=self.user))
+        return initial_files
+
+    def get_document(self):
+        initial_files = EncryptedFileTree.objects.filter(Q(name__endswith=('.pdf')) | Q(
+            name__endswith='.docx') | Q(name__endswith='.doc') | Q(name__endswith='.txt') & Q(owner=self.user))
+        return initial_files
+
+    # checked
+
+    def get_encrypted(self, fileTree: EncryptedFileTree, from_path: str) -> bool:
+        save_to = fileTree.get_complete_path()
+        key = fileTree.encryption_key
+        return Encrypt.encrypt(from_path, save_to, key)
+
+    # checked
+    def get_decrypted(self, fileTree: EncryptedFileTree) -> str:
         # Get the complete path of the encrypted file
         encrypted_path = fileTree.get_complete_path()
-
-        # Create a temporary directory to save the decrypted file
-        temp_dir = tempfile.TemporaryDirectory()
-        temp_path = os.path.join(temp_dir.name, fileTree.name)
 
         with open(encrypted_path, "rb") as f:
             data = f.read()
 
-        decrypted_data = Encrypt.decrypt(data, fileTree.key)
-        with open(temp_path, "wb") as f:
-            f.write(decrypted_data)
-
-        # Return the path to the decrypted file
-        return temp_path
+        decrypted_data = Encrypt.decrypt(data, fileTree.encryption_key)
+        return decrypted_data
+    # checked for a file
 
     def export(self, fileTree, to):
         if fileTree.is_directory:
-            # if the fileTree is a directory, export all its children recursively
+            new_to = os.path.join(to, fileTree.name).replace("\\", "/")
+            try:
+                os.mkdir(new_to)
+            except FileExistsError:
+                pass
             for child in self.get_children(fileTree):
-                self.export(child, os.path.join(to, child.name))
+                self.export(child, new_to)
         else:
-            # if the fileTree is a file, decrypt it and save to the export path
-            temp_path = self.get_decrypted(fileTree)
-            export_path = os.path.join(to, fileTree.name)
+            decrypted_data = self.get_decrypted(fileTree)
+            temp_dir = tempfile.TemporaryDirectory()
+            temp_path = os.path.join(temp_dir.name, fileTree.name)
+            with open(temp_path, "wb") as f:
+                f.write(decrypted_data)
+            export_path = os.path.join(to, fileTree.name).replace("\\", "/")
             shutil.move(temp_path, export_path)
 
-    # Checked
-    def insert_file(self, file, fileTree):
-        # TODO 1)create a encrypted file tree for the file with parent directory = file tree
-        new_file = EncryptedFileTree.objects.create(name=get_name_from_path(
-            file), parent_directory=fileTree, owner=self.user, encryption_key=get_encryption_key())
-        #     2) encrypt the file from actual path
-        self.get_encrypted(new_file, file)
-        #     3) returns true, if insertion is successful. else, return false.
-        return new_file
-    # Checked
+    def export_temp(self, fileTree) -> str:
+        decrypted_data = self.get_decrypted(fileTree)
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.temp_path = os.path.join(self.temp_dir.name, fileTree.name)
+        with open(self.temp_path, "wb") as f:
+            f.write(decrypted_data)
+        return self.temp_path
 
+    # Checked
+    def insert_file(self, file, parentFileTree):
+        new_file = EncryptedFileTree.objects.create(name=get_name_from_path(
+            file), parent_directory=parentFileTree, owner=self.user, encryption_key=get_encryption_key())
+        self.get_encrypted(new_file, file)
+        return new_file
+
+    # Checked
     def insert_folder(self, folder, fileTree):
-        #   1) call create function and create a folder.   
-        #creation of folder
+        #   1) call create function and create a folder.
+        # creation of folder
         new_folder = self.create_folder(get_name_from_path(folder), fileTree)
-        #   2) loop for all the files one by one using insert_file function.
         files = os.listdir(folder)
 
         for file in files:
             file_path = os.path.join(folder, file).replace("\\", "/")
             if os.path.isfile(file_path):
                 self.insert_file(file_path, new_folder)
-                print(file_path)
             elif os.path.isdir(file_path):
                 self.insert_folder(file_path, new_folder)
-                print(file_path)
         return new_folder
 
     # Checked
     def create_folder(self, folder, fileTree):
-        new_folder = EncryptedFileTree.objects.create(name = folder, parent_directory = fileTree, owner = self.user)
+        new_folder = EncryptedFileTree.objects.create(
+            name=folder, parent_directory=fileTree, owner=self.user)
         return new_folder
+
+    # checked
+    def is_file(self, id):
+        return EncryptedFileTree.objects.get(id=id).is_file
+
+    # checked
+    def get_encrypted_file_tree(self, id):
+        return EncryptedFileTree.objects.get(id=id)
+
+    # checked
+    def delete_fileTree(self, id):
+        if not EncryptedFileTree.objects.filter(id=id).exists():
+            return False
+        fileTree = EncryptedFileTree.objects.get(id=id)
+        if fileTree.is_file:
+            complete_path = fileTree.get_complete_path()
+            fileTree.delete()
+            os.remove(complete_path)
+        else:
+            for file in self.get_children(fileTree):
+                self.delete_fileTree(file.id)
+            fileTree.delete()
+        return True
+
+    def set_storage_location(self, location):
+        if location:
+            self.user.directory = location
+            self.user.has_toured = True
+            self.user.save()
+            return True
+        return False

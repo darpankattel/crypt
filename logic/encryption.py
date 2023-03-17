@@ -12,6 +12,9 @@ class Encrypt:
         """
         with open(from_path, 'rb') as f:
             data = f.read()
+        key = bytes(key, 'utf-8')
+        # print(key)
+        # print(len(key))
         cipher_suite = Fernet(key)
         encrypted_data = cipher_suite.encrypt(data)
         with open(to_path, 'wb') as f:
@@ -23,6 +26,7 @@ class Encrypt:
         """
         A method to decrypt the data and return the decrypted data.
         """
+        key = bytes(key, 'utf-8')
         fernet = Fernet(key)
         decrypted_data = fernet.decrypt(data)
         return decrypted_data
